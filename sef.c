@@ -66,8 +66,9 @@ unsigned long sef(unsigned long t, unsigned long a, unsigned long b){
      *
      *   f(n) = t1*PHI^n + t2*PHIC^n = t1*PHI^n + t2*(1/(-PHI)^n) = t
      */
-    
-    const long double n = log((t+sqrt(pow(t,2) + abs(4*t1*t2) ))/(2*t1))/log(PHI); //(8)
+
+    //ONE SUCH ROOT
+    const long double n = log((t+sqrt(pow(t,2) + fabsl(4*t1*t2) ))/(2*t1))/log(PHI); //(8)
 
 
     long double N;
@@ -126,12 +127,15 @@ unsigned long sef(unsigned long t, unsigned long a, unsigned long b){
       //FOR CODE CLARITY
       const long double s1 = (B-A*MUC)/(MU-MUC);
       const long double s2 = (B-A*MU)/(MUC-MU);
-     
-      const long double n = log((t+sqrt(pow(t,2) + abs(4*s1*s2)))/(2*s1))/log(MU);
+
+
+      //ONE SUCH ROOT
+      const long double n = log((t+sqrt(pow(t,2) + fabsl(4*s1*s2)))/(2*s1))/log(MU);
 
       long double N;
       if (n == floor(n)) N = n-1; //(30)
       else N = floor(n); //(31)
+
       
       return round(s1*((1-pow(MU,N+1))/(1-MU)) + s2*((1-pow(MUC, N+1))/(1-MUC)));//(32)
 
